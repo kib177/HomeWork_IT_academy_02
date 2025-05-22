@@ -1,44 +1,42 @@
 import by.HomeWork.NumberToWeek;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NumberToWeekTest {
 
-    @Test
-    @DisplayName(" Проверяет числа 10-19, где метод возвращает 'неделя'")
-    public void testDays10to19() {
-        assertEquals("неделя", NumberToWeek.toWeek(12));
-        assertEquals("неделя", NumberToWeek.toWeek(7));
-        assertEquals("неделя", NumberToWeek.toWeek(9));
-    }
+    @ParameterizedTest
+    @CsvSource({
+            // проверка чисел которые возвращают слово неделя
+            "1 неделя, 12",
+            "1 неделя, 7",
+            "1 неделя, 9",
 
-    @Test
-    @DisplayName("Проверяет диапазон 20-49, где ожидается 'недели'")
-    public void testDays20to49() {
-        assertEquals("недели", NumberToWeek.toWeek(20));
-        assertEquals("недели", NumberToWeek.toWeek(21));
-        assertEquals("недели", NumberToWeek.toWeek(25));
-        assertEquals("недели", NumberToWeek.toWeek(30));
-    }
+            // числа, где возвращает недели
+            "2 недели, 20",
+            "3 недели, 21",
+            "3 недели, 25",
+            "4 недели, 30",
 
-    @Test
-    @DisplayName("Проверяет, где ожидается 'недель'")
-    public void test1050AndAbove() {
-        assertEquals("недель", NumberToWeek.toWeek(0));
-        assertEquals("недель", NumberToWeek.toWeek(5));
-        assertEquals("недель", NumberToWeek.toWeek(6));
-        assertEquals("недель", NumberToWeek.toWeek(50));
-        assertEquals("недель", NumberToWeek.toWeek(99));
-        assertEquals("недель", NumberToWeek.toWeek(100));
-    }
+            //числа, где возвращает недель
+            "0 недель, 0",
+            "0 недель, 5",
+            "0 недель, 6",
+            "7 недель, 50",
+            "13 недель, 91",
+            "14 недель, 100",
+            "114 недель, 800",
+            "28571 неделя, 200000",
+            "142857142 недели, 999999999"
 
-    @Test
-    @DisplayName("Проверяет значения, демонстрирующие некорректность текущей логики")
-    public void testLogics() {
-        assertEquals("неделя", NumberToWeek.toWeek(7));   // 7 дней = 1 неделя, но тест на текущую логику
-        assertEquals("недели", NumberToWeek.toWeek(14));  // 14 дней = 2 недели, но тест на текущую логику
-    }
 
+
+    })
+    void FormatParameterized(String week, int day) {
+        NumberToWeek numberToWeek = new NumberToWeek();
+        assertEquals(week, numberToWeek.toWeek(day));
+    }
 }
+
+

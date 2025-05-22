@@ -1,5 +1,9 @@
 
-Домашнее задание: 
+<h1 align="center">Всем привет, я <a href="https://daniilshat.ru/" target="_blank">Kirill Brigi</a> 
+<img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
+
+
+Домашнее задание IT-Academy: 
 Строки. Все методы пишутся в одном классе:
 1. Написать метод String toString(int number).
    1.1 В данном методе произвести конвертацию переданного числа в число прописью. Числа от - 999 999 999 до 999 999 999

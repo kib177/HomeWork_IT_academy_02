@@ -17,7 +17,9 @@ public class NumberToHMSM {
      *                    если {@code false} — полный словесный формат
      * @return отформатированная строка времени
      */
-    public static String toHoursMinuteSecondMillisecond(long millis, boolean shortFormat) {
+    public String toHoursMinuteSecondMillisecond(long millis, boolean shortFormat)  {
+        if (millis < 0) throw new IllegalArgumentException("Negative value");
+
         long hours = TimeUnit.MILLISECONDS.toHours(millis);
         millis -= TimeUnit.HOURS.toMillis(hours);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(millis);
@@ -41,7 +43,8 @@ public class NumberToHMSM {
      * @param forms массив из трёх форм
      * @return строка в формате "{число} {правильная_форма_слова}"
      */
-    private static String format(long n, String... forms) {
+    private String format(long n, String... forms) {
+
         return n + " " + forms[(n % 100 >= 11 && n % 100 <= 14) ? 2 :
                 new int[]{2, 0, 1, 1, 1, 2, 2, 2, 2, 2}[ (int)(n % 10)]];
     }

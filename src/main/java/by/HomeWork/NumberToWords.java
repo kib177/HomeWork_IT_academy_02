@@ -19,7 +19,7 @@ public class NumberToWords {
      * @return строку с текстовым представлением числа
      * @throws NumberFormatException если число выходит за допустимый диапазон
      */
-    public static String toString(int number) {
+    public String toString(int number) {
         if (number == 0) return "ноль";
 
         boolean minus = number < 0;
@@ -59,7 +59,7 @@ public class NumberToWords {
      * @return строку с текстовым представлением числа
      * @throws NumberFormatException если дробная часть равна 0 или возникает ошибка округления
      */
-    public static String toString(double number) {
+    public String toString(double number) {
         StringBuilder result = new StringBuilder(toString((int)number));
 
         int fraction = (int)(((Math.abs(number) % 1)+0.001) * 100); // 0.001 для сокрытия не точности округления double временное, исправить!!!
@@ -83,7 +83,7 @@ public class NumberToWords {
      * @param State флаг, указывающий на род числительного (true - мужской, false - женский)
      * @return текстовое представление трехзначного числа
      */
-    private static String ConvertThree(int numConvert, boolean State) {
+    private String ConvertThree(int numConvert, boolean State) {
         String resultConvertThree = "";
 
         if (numConvert / 100 > 0) {
@@ -112,7 +112,7 @@ public class NumberToWords {
      * @param formType тип формы (0 - миллионы, 1 - тысячи)
      * @return правильную форму слова
      */
-    private static String GetForm(int numConvert, int formType) {
+    private String GetForm(int numConvert, int formType) {
         if ((numConvert % 100) >= 11 && (numConvert % 100) <= 19) return FORMS[formType][0];
         if (numConvert % 10 == 1) return FORMS[formType][1];
         if (numConvert % 10 >= 2 && numConvert % 10 <= 4) return FORMS[formType][2];
@@ -126,7 +126,7 @@ public class NumberToWords {
      * @param num число для определения окончания
      * @return правильное окончание для дробной части
      */
-    private static String getFractionalEnding(int num) {
+    private String getFractionalEnding(int num) {
         return (num % 100 >= 11 && num % 100 <= 14) || num % 10 != 1 ? "сотых" : "сотая";
     }
 }

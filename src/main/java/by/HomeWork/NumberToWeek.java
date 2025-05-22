@@ -12,15 +12,17 @@ public class NumberToWeek {
      * @return строка с правильной формой слова: "неделя", "недели" или "недель"
      *
      */
-    public static String toWeek(int day) {
+    public String toWeek(int day) {
         int weeks = day / 7;
-        if (weeks % 100 >= 11 && weeks % 100 <= 14) {
-            return "недель";
+        int x = weeks % 100;
+        if (x >= 11 && x <= 14) {
+            return weeks + " недель";
         }
+
         return switch (weeks % 10) {
-            case 1 -> "неделя";
-            case 2, 3, 4 -> "недели";
-            default -> "недель";
+            case 1 -> weeks + " неделя";
+            case 2, 3, 4 -> weeks + " недели";
+            default -> weeks + " недель";
         };
     }
 }
